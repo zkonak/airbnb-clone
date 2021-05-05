@@ -3,11 +3,22 @@ import SignUp from './page/signup';
 import Login from './page/login';
 import Home from './page/home';
 import Place from './page/detailplace';
+import React from 'react';
 
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
+import {BrowserRouter as Router, Switch, Route,Redirect} from 'react-router-dom';
 
+const PrivateRoute = ({component: Component, ...rest}) => {
+  const store = React.useContext(appContext);
+  return (
+    <Route {...rest} render={(props) => (
+      store.isAuth
+      ? <Component {...props} />
+      : <Redirect to='/' />
+    )} />
+  );
+}
 
 
 
