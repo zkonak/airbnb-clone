@@ -33,7 +33,8 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-        <div>
+        <div class="loginForm">
+            <h1>Login</h1>
             {this.state.error && <h6>{this.state.error}</h6>}
             <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />

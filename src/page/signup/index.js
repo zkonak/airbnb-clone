@@ -1,5 +1,6 @@
 import React from 'react';
 import {SignUpForm} from './Form'
+import {LoginForm} from '../login/Form'
 
 class SignUp extends React.Component {
 
@@ -7,6 +8,7 @@ class SignUp extends React.Component {
         return (
             <>
                 <SignUpForm history={this.props.history} />
+                <LoginForm history={this.props.history} />
                 
             </>
         )

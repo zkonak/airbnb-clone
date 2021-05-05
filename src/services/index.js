@@ -1,4 +1,6 @@
 import userService from './user';
+import homeService from './home';
+import placeService from './place';
 
 
-export {userService};
+export {userService,homeService,placeService};
