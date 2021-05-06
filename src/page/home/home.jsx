@@ -1,6 +1,8 @@
 import React from 'react';
 import {homeService} from '../../services';
 import image from '../../assets/images/img_maison.jpeg';
+import {withRouter} from "react-router-dom";
+import Button from '../../components/button';
 
 
 class PlaceList extends React.Component {
@@ -14,21 +16,34 @@ class PlaceList extends React.Component {
     }
 
     async componentDidMount() {
-       
-
+        const queryString = require('query-string');
+        const parsed = queryString.parse(this.props.location.search);
+     
         try {
-            const response = await homeService.getPlaces();
+            const response = await homeService.getPlaces(parsed.city);
             this.setState({placeList: response.data});
+            
         } catch (e) {
             this.setState({error: e.message});
         }
     }
 
+    handleButtonClick=(e)=>{
+ 
+      
+        this.props.history.push('/addplace');
+        this.props.history.go();
+       }
+
     render() {
         const list = this.state.placeList;
         return (
             <>
+           <Button size="small" handleClick={(e) => this.props.history.push('/signup')} value="Devenez Hote" ></Button>
+           <Button size="small" handleClick={(e) => this.props.history.push('/signup')} value="Inscription"></Button>
+           <Button size="small" handleClick={this.handleButtonClick.bind(this)} value="Ajoutez Une Maison"></Button>
             <h1>Les meilleurs logements</h1>
+
                 {this.state.error && <p>{this.state.error}</p>}
                 {//si list pas egal null
                 }
@@ -46,4 +61,4 @@ class PlaceList extends React.Component {
     }
 }
 
-export default PlaceList;
+export default withRouter(PlaceList);

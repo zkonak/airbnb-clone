@@ -1,10 +1,17 @@
 import api from './api';
 
 const homeService = {
-    getPlaces: async () => {
-       
+    getPlaces: async (cityName) => {
+        let city="";
+      
+        if(cityName)
+         city=cityName;
 
-        return await api.get('/places?city=Paris', null);
+        /* else 
+         city="Paris"*/
+
+        
+        return await api.get('/places?cityName='+city, null);
     }
 };
 
