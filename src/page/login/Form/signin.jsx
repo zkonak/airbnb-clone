@@ -25,6 +25,8 @@ class LoginForm extends React.Component {
         try {
             const response = await userService.login(email,password);
             localStorage.setItem('token', response.data.token);
+           
+            localStorage.setItem('user_id', response.data.user.id_user);
             this.props.history.push('/');
         } catch(e) {
             this.setState({error: e.message});

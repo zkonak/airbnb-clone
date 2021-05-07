@@ -41,7 +41,7 @@ class UpdatePlace extends React.Component {
           }
           console.log(this.props.match);
         const placeId = this.props.match.params.placeId;
-
+        this.setState({placeId: placeId});
         try {
             const response = await placeService.getPlace(placeId);
            console.log(response)
@@ -77,7 +77,7 @@ class UpdatePlace extends React.Component {
         }
     }
 
-  
+
     
     render() {
         const  options = this.state.cityList.map(d => ({
