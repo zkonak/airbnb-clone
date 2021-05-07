@@ -5,9 +5,10 @@ import Home from './page/home';
 import Place from './page/detailplace';
 import React from 'react';
 import AddPlace from './page/addPlace';
-
+import UpdateForm from './page/updatePlace';
 
 import {BrowserRouter as Router, Switch, Route,Redirect} from 'react-router-dom';
+
 
 
 // const PrivateRoute = ({component: Component, ...rest}) => {
@@ -33,7 +34,8 @@ function App() {
         <Route exact path='/' component={Home} />
         <Route exact path='/addplace' component={AddPlace} />
         <Route exact path='/places/:placeId' component={Place} />
-        <Route  path='/places' component={Home} />
+        <Route  exact path='/places' component={Home} />
+        <Route  path='/updatePlace/:placeId' component={UpdateForm} />
        
        
       </Switch>

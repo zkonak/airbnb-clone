@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from "react-router-dom";
 import {placeService} from '../../services';
 import image from '../../assets/images/img_maison.jpeg';
+import Button from '../../components/button';
 
 
 class PlaceDetail extends React.Component {
@@ -32,12 +33,14 @@ class PlaceDetail extends React.Component {
         console.log(list);
         return (
             <>
+             
               
                 {this.state.error && <p>{this.state.error}</p>}
                 {//si list pas egal null
                 }
                 {list && list.map(key=>
                     <article >
+                        <Button size="small" handleClick={(e) => this.props.history.push('/updatePlace/'+key.id_place)} value="update place" ></Button>
                        <h3>{key.name}</h3>
                         <img src={image} alt=''/>
                         <p>{key.city_name}</p>
