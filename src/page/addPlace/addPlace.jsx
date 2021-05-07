@@ -4,7 +4,7 @@ import Button from '../../components/button';
 
 import Select from "react-dropdown-select";
 
-import {withRouter} from "react-router-dom";
+
 
 class AddPlaceForm extends React.Component {
 
@@ -20,7 +20,8 @@ class AddPlaceForm extends React.Component {
             max_guests: null,
             price_by_night: null,
             available:1,
-            cityList:[]
+            cityList:[],
+            user_id:localStorage.getItem("user_id")
           
             }
     }
@@ -50,12 +51,13 @@ class AddPlaceForm extends React.Component {
     }
 
     handleClick = async (e) => {
-        const {city_id,name,description,rooms ,bathrooms,max_guests,price_by_night,available} = this.state;
-
+        const {city_id,name,description,rooms ,bathrooms,max_guests,price_by_night,available,user_id} = this.state;
+        //const user_id=localStorage.getItem("id_user");
         try {
             console.log(this.state);
-            const response = await placeService.addPlace(city_id,name,description,rooms ,bathrooms,max_guests,price_by_night,available);
+            const response = await placeService.addPlace(city_id,name,description,rooms ,bathrooms,max_guests,price_by_night,available,user_id);
             //localStorage.setItem('token', response.data.token);
+            console.log(response);
             this.props.history.push('/');
         } catch(e) {
             console.log(e);
@@ -84,16 +86,16 @@ class AddPlaceForm extends React.Component {
             <Select options={options}  name="city_id" placeholder="Choisir une Ville" onChange={this.handleCityChange}/>
                  
             <label for="rooms">Chambres</label>
-            <input type="text" name="rooms" value={this.state.rooms} onChange={this.handleChange} />
+            <input type="number" name="rooms" value={this.state.rooms} onChange={this.handleChange} />
             
             <label for="bathrooms">Salle de Bain</label>
-            <input type="text" name="bathrooms" value={this.state.bathrooms} onChange={this.handleChange} />
+            <input type="number" name="bathrooms" value={this.state.bathrooms} onChange={this.handleChange} />
             
             <label for="max_guests">Maximum visiteurs</label>
-            <input type="text" name="max_guests" value={this.state.max_guests} onChange={this.handleChange} />
+            <input type="number" name="max_guests" value={this.state.max_guests} onChange={this.handleChange} />
            
             <label for="price_by_night"> Prix par Jour</label>
-            <input type="text" name="price_by_night" value={this.state.price_by_night} onChange={this.handleChange} />
+            <input type="number" name="price_by_night" value={this.state.price_by_night} onChange={this.handleChange} />
 {/*            
             <label for="available"> Disponible</label>
             <input type="text" name="available" value={this.state.available} onChange={this.handleChange} />
@@ -102,4 +104,4 @@ class AddPlaceForm extends React.Component {
         </div>
         )}
 }
-export default withRouter(AddPlaceForm);
+export default AddPlaceForm;
