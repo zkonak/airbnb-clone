@@ -1,6 +1,8 @@
 import React from 'react';
 import {userService} from '../../../services';
 import Button from '../../../components/button';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class LoginForm extends React.Component {
 
@@ -13,6 +15,7 @@ class LoginForm extends React.Component {
             error: null
         }
     }
+    
 
     handleChange = (e) => {
         const {name, value} = e.target;
@@ -25,11 +28,11 @@ class LoginForm extends React.Component {
         try {
             const response = await userService.login(email,password);
             localStorage.setItem('token', response.data.token);
-           
-            localStorage.setItem('user_id', response.data.user.id_user);
+             localStorage.setItem('user_id', response.data.user.id_user);
+             cookies.set('authcookie', response.data.token, { path: '/' });
             this.props.history.push('/');
         } catch(e) {
-            this.setState({error: e.message});
+            this.setState({error: e.response.data.message });
         }
     }
 

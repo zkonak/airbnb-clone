@@ -25,7 +25,7 @@ class SearchBar extends React.Component {
           
            
         } catch (e) {
-            this.setState({error: e.message});
+            this.setState({error: e.response.data.message });
         }
     }
 

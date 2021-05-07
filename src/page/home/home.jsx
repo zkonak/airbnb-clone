@@ -24,7 +24,7 @@ class PlaceList extends React.Component {
             this.setState({placeList: response.data});
             
         } catch (e) {
-            this.setState({error: e.message});
+            this.setState({error: e.response.data.message });
         }
     }
 
@@ -42,6 +42,7 @@ class PlaceList extends React.Component {
            <Button size="small" handleClick={(e) => this.props.history.push('/signup')} value="Devenez Hote" ></Button>
            <Button size="small" handleClick={(e) => this.props.history.push('/signup')} value="Inscription"></Button>
            <Button size="small" handleClick={this.handleButtonClick.bind(this)} value="Ajoutez Une Maison"></Button>
+           <Button size="small" handleClick={(e) => this.props.history.push('/bookings')} value="Mes Reservations"></Button> 
             <h1>Les meilleurs logements</h1>
 
                 {this.state.error && <p>{this.state.error}</p>}

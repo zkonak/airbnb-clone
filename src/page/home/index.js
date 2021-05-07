@@ -10,6 +10,7 @@ class Home extends React.Component {
             <>
 
              <Search history={this.props.history} />
+            
              <PlaceList history={this.props.history} />
                
                 

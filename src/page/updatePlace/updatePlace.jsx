@@ -37,7 +37,7 @@ class UpdatePlace extends React.Component {
             
              
           } catch (e) {
-              this.setState({error: e.message});
+              this.setState({error:e.response.data.message });
           }
           console.log(this.props.match);
         const placeId = this.props.match.params.placeId;
@@ -47,7 +47,7 @@ class UpdatePlace extends React.Component {
            console.log(response)
             this.setState({city_id:response.data[0].city_id,name:response.data[0].name,description:response.data[0].description,rooms:response.data[0].rooms ,bathrooms:response.data[0].bathrooms,max_guests:response.data[0].max_guests,price_by_night:response.data[0].price_by_night,available:response.data[0].available});
         } catch (e) {
-            this.setState({error: e.message});
+            this.setState({error: e.response.data.message });
         }
       }
       
@@ -73,7 +73,7 @@ class UpdatePlace extends React.Component {
             this.props.history.push('/');
         } catch(e) {
             console.log(e);
-            this.setState({error: e.message});
+            this.setState({error: e.response.data.message });
         }
     }
 
@@ -96,7 +96,7 @@ class UpdatePlace extends React.Component {
             <label for="description">Description</label>
             <textarea type="description" name="description" value={this.state.description} onChange={this.handleChange} />
             <label for="city_id">Ville</label>
-            <Select options={options}  name="city_id" placeholder="Choisir une Ville" onChange={this.handleCityChange}/>
+            <Select options={options}  name="city_id" value={this.state.city_id} placeholder="Choisir une Ville" onChange={this.handleCityChange}/>
                  
             <label for="rooms">Chambres</label>
             <input type="text" name="rooms" value={this.state.rooms} onChange={this.handleChange} />

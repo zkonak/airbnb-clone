@@ -6,8 +6,9 @@ import Place from './page/detailplace';
 import React from 'react';
 import AddPlace from './page/addPlace';
 import UpdateForm from './page/updatePlace';
-
+import Booking from './page/booking';
 import {BrowserRouter as Router, Switch, Route,Redirect} from 'react-router-dom';
+
 
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route exact path='/addplace' component={AddPlace} />
         <Route exact path='/places/:placeId' component={Place} />
         <Route  exact path='/places' component={Home} />
+        <Route  exact path='/bookings' component={Booking} />
         <Route  path='/updatePlace/:placeId' component={UpdateForm} />
        
        

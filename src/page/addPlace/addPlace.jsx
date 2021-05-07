@@ -36,7 +36,7 @@ class AddPlaceForm extends React.Component {
             
              
           } catch (e) {
-              this.setState({error: e.message});
+              this.setState({error: e.response.data.message });
           }
       }
 
@@ -61,7 +61,7 @@ class AddPlaceForm extends React.Component {
             this.props.history.push('/');
         } catch(e) {
             console.log(e);
-            this.setState({error: e.message});
+            this.setState({error: e.response.data.message });
         }
     }
 
