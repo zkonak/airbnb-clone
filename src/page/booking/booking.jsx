@@ -12,11 +12,12 @@ class BookingList extends React.Component {
         this.state = {
             bookingList: null,
             error: null
+
         };
     }
 
     async componentDidMount() {
-       
+        // const bookingId = this.props.match.params.bookingId;
      
         try {
             const response = await bookingService.getBookings();
@@ -25,6 +26,14 @@ class BookingList extends React.Component {
         } catch (e) {
             this.setState({error: e.response.data.message });
         }
+        // try {
+        //     const response = await bookingService.getBookings(bookingId);
+           
+           
+        //     this.setState({booking:response.data});
+        // } catch (e) {
+        //     this.setState({error: e.response.data.message });
+        // }
     }
 
     // handleButtonClick=(e)=>{
@@ -53,6 +62,8 @@ class BookingList extends React.Component {
                         <p>Prix:{key.place.price_by_night}</p>
                         <p>Check-In:{key.check_in}</p>
                         <p>Check-Out{key.check_out}</p>
+                        <Button size="small" handleClick={(e) => this.props.history.push('/deleteBooking/'+ key.id_booking)} value="delete booking" ></Button>
+
                         
 
                     </article>

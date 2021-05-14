@@ -8,6 +8,7 @@ import AddPlace from './page/addPlace';
 import UpdateForm from './page/updatePlace';
 import Booking from './page/booking';
 import {BrowserRouter as Router, Switch, Route,Redirect} from 'react-router-dom';
+import DeleteBookings from './page/deleteBooking/deleteBooking';
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <Route  exact path='/places' component={Home} />
         <Route  exact path='/bookings' component={Booking} />
         <Route  path='/updatePlace/:placeId' component={UpdateForm} />
+        <Route  path='/Bookings/:bookingId' component={DeleteBookings} />
        
        
       </Switch>

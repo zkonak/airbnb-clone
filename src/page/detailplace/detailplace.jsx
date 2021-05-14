@@ -13,16 +13,19 @@ class PlaceDetail extends React.Component {
             place:null,
             error: null,
             check_in:null,
-            check_out:null
+            check_out:null,
+            bookingId:null
         };
     }
 
     async componentDidMount() {
         console.log(this.props.match);
         const placeId = this.props.match.params.placeId;
+       
 
         try {
             const response = await placeService.getPlace(placeId);
+           
            
             this.setState({place:response.data});
         } catch (e) {
@@ -77,6 +80,7 @@ class PlaceDetail extends React.Component {
                         <input type="date" name="check_out" value={this.state.check_out} onChange={this.handleChange} /> 
                         <Button size="small"  handleClick={this.handleBookingClick} 
                         value="Reservation"></Button>
+
                        
                     </article>
                ) }

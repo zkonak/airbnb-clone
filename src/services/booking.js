@@ -19,7 +19,11 @@ const bookingService = {
 //         return await api.patch('/places/'+ placeId,place);
    
 //     }
+deleteBooking: async(user_id,check_in,check_out, bookingId)=> {
+  const book = {user_id,check_in,check_out, bookingId};
+console.log(book)
+  return await api.patch('/bookings/'+ bookingId);
 
-
+}
 };
-export default bookingService;
+export default bookingService
